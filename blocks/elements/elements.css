@@ -1,0 +1,9 @@
+.elements {
+    max-width: 882px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    margin: 51px auto 0;
+    grid-column-gap: 18px;
+    grid-row-gap: 21px;
+}

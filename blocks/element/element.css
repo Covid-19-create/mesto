@@ -1,0 +1,11 @@
+@import url(./__group/element__group.css);
+@import url(./__heart/element__heart.css);
+@import url(./__image/element__image.css);
+@import url(./__place/element__place.css);
+
+.element {
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}

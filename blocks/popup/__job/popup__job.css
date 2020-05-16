@@ -1,0 +1,13 @@
+.popup__job {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    margin-top: 30px;
+}
+
+@media (max-width: 330px) {
+    .popup__job {
+        font-size: 12px;
+    }
+}

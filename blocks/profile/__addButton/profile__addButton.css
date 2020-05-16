@@ -1,0 +1,25 @@
+.profile__addButton {
+    width: 150px;
+    height: 50px;
+    background-color: unset;
+    border-radius: 2px;
+    border: 2px solid #fff;
+    margin: 35px 0 0 auto;
+    background-image: url(../../../sprint-4-image/plus.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.profile__addButton:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+@media (max-width: 610px) {
+    .profile__addButton {
+        width: 282px;
+        margin: 35px auto 0;
+    }
+}

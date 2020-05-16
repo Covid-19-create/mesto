@@ -1,0 +1,26 @@
+.profile__jobs {
+    color: #fff;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    max-width: 318px;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@media (max-width: 610px) {
+    .profile__jobs {
+        margin: auto;
+    }
+}
+
+
+@media (max-width: 399px) {
+    .profile__jobs {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
