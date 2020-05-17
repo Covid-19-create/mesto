@@ -9,25 +9,23 @@ const jobs = body.querySelector('.profile__jobs')
 const popup = body.querySelector('.popup') 
 const formSubmit = body.querySelector('.popup__form')
  
-function openPopup() { 
+function openPopup() { //открытие popup
     popup.classList.add('popup_opened'); 
     popupName.value = fullname.textContent 
     popupJob.value = jobs.textContent 
 } 
  
-editButton.addEventListener('click', openPopup); 
- 
-function closePopup() { 
+function closePopup() { //закрытие popup
     popup.classList.remove('popup_opened'); 
 } 
  
-popupClose.addEventListener('click', closePopup); 
- 
-function saveSubmit (evt) { 
+function saveSubmit (evt) { //отправка формы popup
     evt.preventDefault(); 
     fullname.textContent = popupName.value 
     jobs.textContent = popupJob.value 
     closePopup() 
 } 
  
-formSubmit.addEventListener('submit', saveSubmit) 
+formSubmit.addEventListener('submit', saveSubmit);
+editButton.addEventListener('click', openPopup); 
+popupClose.addEventListener('click', closePopup); 

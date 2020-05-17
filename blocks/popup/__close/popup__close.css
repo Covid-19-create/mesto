@@ -15,3 +15,10 @@
     cursor: pointer;
     opacity: 0.6;
 }
+
+
+@media (max-width: 520px) {
+    .popup__close {
+        right: 0;
+    }
+}
