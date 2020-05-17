@@ -1,4 +1,4 @@
-.profile__fullname {
+.profile__full-name {
     color: #fff;
     font-weight: 500;
     font-size: 42px;
@@ -11,7 +11,7 @@
 }
 
 @media (max-width: 399px) {
-    .profile__fullname {
+    .profile__full-name {
         font-size: 27px;
     }
 }

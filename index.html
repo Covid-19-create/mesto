@@ -12,17 +12,16 @@
     <div class="page">
         <header class="header">
             <img class="header__logo" src="./sprint-4-image/Vector.svg" alt="Логотип">
-            <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile">
                 <img class="profile__avatar" src="./sprint-4-image/image.jpg" alt="Фото Жака">
                 <div class="profile__info">
-                    <h1 class="profile__fullname">Жак-Ив Кусто</h1>
-                    <button class="profile__editButton"></button>
+                    <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-Button" type="button"></button>
                     <p class="profile__jobs">Исследователь океана</p>
                 </div>
-                <button class="profile__addButton"></button>
+                <button class="profile__add-Button" type="button"></button>
             </section>
             <section class="elements">
                 <div class="element">
@@ -30,42 +29,42 @@
                         alt="Фото достопримечательности Карачаевска">
                     <div class="element__group">
                         <h2 class="element__place">Карачаевск</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./sprint-4-image/elbrus.jpg" alt="Фото горы Эльбруса">
                     <div class="element__group">
                         <h2 class="element__place">Гора Эльбрус</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./sprint-4-image/dombai.jpg" alt="Фото Домбая">
                     <div class="element__group">
                         <h2 class="element__place">Домбай</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./sprint-4-image/Everest.jpg" alt="Фото горы Эвереста">
                     <div class="element__group">
                         <h2 class="element__place">Гора Эверест</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./sprint-4-image/baltiyskmore.jpg" alt="Фото Балтийского моря">
                     <div class="element__group">
-                        <h2 class="element__place">М. Балтийское</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <h2 class="element__place">Море Балтийское</h2>
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./sprint-4-image/rashmor.jpg" alt="Фото горы Рашмор">
                     <div class="element__group">
                         <h2 class="element__place">Гора Рашмор</h2>
-                        <img class="element__heart" src="./sprint-4-image/heart.svg" alt="Лайк">
+                        <button class="element__heart" type="button"></button>
                     </div>
                 </div>
             </section>
@@ -73,25 +72,21 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-    </div>
-    <form class="form">
         <div class="popup">
-            <button class="popup__close"></button>
             <div class="popup__container">
-                <h2 class="popup__heading">Редактировать профиль</h2>
-                <fieldset class="popup__input-container">
-                    <input type="text" class="popup__name" placeholder="Имя и фамилия">
-                    <hr>
-                    <input type="text" class="popup__job" placeholder="Должность">
-                    <hr>
-                </fieldset>
-                <button class="popup__inputSave">
-                    <p class="popup__save">Сохранить</p>
-                </button>
+                <form class="popup__form" name="reprofile" method="GET" action="#">
+                    <h2 class="popup__heading">Редактировать профиль</h2>
+                    <fieldset class="popup__input-container">
+                        <input type="text" name="profile" required placeholder="Имя и фамилия"
+                            class="popup__field popup__field_name">
+                        <input type="text" name="job" required placeholder="Должность" class="popup__field popup__field_job">
+                    </fieldset>
+                    <button class="popup__input-save" type="button">Сохранить</button>
+                    <button class="popup__close" type="button"></button>
+                </form>
             </div>
         </div>
-    </form>
-
+    </div>
     <script src="./script.js"></script>
 </body>
 

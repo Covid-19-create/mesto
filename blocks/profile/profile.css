@@ -1,7 +1,7 @@
-@import url(./__addButton/profile__addButton.css);
+@import url(./__add-Button/profile__add-Button.css);
 @import url(./__avatar/profile__avatar.css);
-@import url(./__editButton/profile__editButton.css);
-@import url(./__fullname/profile__fullname.css);
+@import url(./__edit-Button/profile__edit-Button.css);
+@import url(./__full-name/profile__full-name.css);
 @import url(./__info/profile__info.css);
 @import url(./__jobs/profile__jobs.css);
 
