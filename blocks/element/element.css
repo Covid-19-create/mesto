@@ -2,10 +2,13 @@
 @import url(./__heart/element__heart.css);
 @import url(./__image/element__image.css);
 @import url(./__place/element__place.css);
+@import url(./__delete/element__delete.css);
 
 .element {
     width: 282px;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    position: relative;
+    height: 367px;
 }

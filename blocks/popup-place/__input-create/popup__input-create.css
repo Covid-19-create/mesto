@@ -1,0 +1,14 @@
+.popup__input-create {
+    border: 0;
+    padding: 0;
+    border-radius: 2px;
+    width: 100%;
+    background: black;
+    height: 50px;
+    color: white;
+}
+
+.popup__input-create:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
