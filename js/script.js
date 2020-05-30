@@ -87,12 +87,12 @@ function delCard(event) {
 
 function newPlaceCard(evt) { // создание карточек
   evt.preventDefault()
-  const placeCard = elementTemplate.cloneNode(true)
-  const placeName = placeCard.querySelector('.element__place')
-  const placeImage = placeCard.querySelector('.element__image')
-  placeName.textContent = inputNamePic.value
-  placeImage.src = inputUrl.value
-  Places.prepend(placeCard)
+  const place = {
+    name: inputNamePic.value,
+    link: inputUrl.value
+  }
+  const PlaceCard = createPlaceCard(place)
+  Places.prepend(PlaceCard)
   closeAdd()
 }
 
