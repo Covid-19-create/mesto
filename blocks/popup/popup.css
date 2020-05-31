@@ -19,5 +19,6 @@
     z-index: 2;
     visibility: hidden;
     opacity: 0;
-    -moz-transition: 0.9s
+    -moz-transition: all;
+    transition: 0.9s;
 }
