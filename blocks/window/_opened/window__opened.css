@@ -1,5 +1,5 @@
 .window_opened {
     visibility: visible;
-    transition: 0.9s;
     opacity: 1;
+    transition: opacity 0.9s
 }
