@@ -32,7 +32,7 @@ const popupName = body.querySelector('.popup__field_name')
 const popupJob = body.querySelector('.popup__field_job')
 const fullName = body.querySelector('.profile__full-name')
 const jobs = body.querySelector('.profile__jobs')
-const popup = body.querySelector('.popup')
+const popupProfile = body.querySelector('.popup_profile')
 const formSubmit = body.querySelector('.popup__form')
 const addButton = body.querySelector('.profile__add-Button')
 const popupPlace = body.querySelector('.popup-place')
@@ -47,28 +47,34 @@ const windowText = body.querySelector('.window__text')  //окно текста
 const windowPopup = body.querySelector('.window') //popup окно
 const closeWindowPopup = body.querySelector('.window__close') //закрытие окна
 
-function openPopup() { //открытие popup
-    popup.classList.add('popup_opened');
-    popupName.value = fullName.textContent
-    popupJob.value = jobs.textContent
+function openPopup(popup) { //открытие popup
+  popup.classList.add('popup_opened');
 }
 
+
+function showPopupProfile() {
+  popupName.value = fullName.textContent
+  popupJob.value = jobs.textContent
+  openPopup(popupProfile)
+}
+
+
 function closePopup() { //закрытие popup
-    popup.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
 }
 
 
 function saveSubmit(evt) { //отправка формы popup
-    evt.preventDefault();
-    fullName.textContent = popupName.value
-    jobs.textContent = popupJob.value
-    closePopup()
+  evt.preventDefault();
+  fullName.textContent = popupName.value
+  jobs.textContent = popupJob.value
+  closePopup()
 }
 
 function openAddPopup() { //открытие popup(места)
-    popupPlace.classList.add('popup-place_opened');
-    inputNamePic.value = ''
-    inputUrl.value = ''
+  popupPlace.classList.add('popup-place_opened');
+  inputNamePic.value = ''
+  inputUrl.value = ''
 }
 
 function closeAdd() { //закрытие popup-place
@@ -148,7 +154,7 @@ cardOutput()
 createNewCard.addEventListener('submit', newPlaceCard)
 places.addEventListener('click', callAction)
 formSubmit.addEventListener('submit', saveSubmit);
-editButton.addEventListener('click', openPopup);
+editButton.addEventListener('click', showPopupProfile);
 popupClose.addEventListener('click', closePopup);
 addButton.addEventListener('click', openAddPopup);
 placeClose.addEventListener('click', closeAdd);

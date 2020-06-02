@@ -8,9 +8,9 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/root/root.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup-place/popup-place.css);
 @import url(../blocks/popup-place/_opened/popup-place_opened.css);
 @import url(../blocks/element/__heart/_like/element__heart_like.css);
 @import url(../blocks/window/window.css);
 @import url(../blocks/window/_opened/window__opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);

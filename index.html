@@ -29,7 +29,7 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_profile">
             <div class="popup__container">
                 <form class="popup__form" name="reprofile" method="GET" action="#">
                     <h2 class="popup__heading">Редактировать профиль</h2>
@@ -44,17 +44,17 @@
                 </form>
             </div>
         </div>
-        <div class="popup-place">
-            <div class="popup__place-container">
-                <form class="popup__form-place" name="new-place" method="GET" action="#">
-                    <h2 class="popup__heading-place">Новое место</h2>
-                    <fieldset class="popup__input-container-place">
+        <!-- <div class="popup popup_place">
+            <div class="popup__container">
+                <form class="popup__form" name="new-place" method="GET" action="#">
+                    <h2 class="popup__heading">Новое место</h2>
+                    <fieldset class="popup__input-container">
                         <input type="text" name="place" required placeholder="Название места"
                             class="popup__name-picture">
                         <input type="text" name="url" required placeholder="Сайт страницы" class="popup__url">
                     </fieldset>
-                    <button class="popup__input-create" type="submit">Создать</button>
-                    <button class="popup__close-place" type="button"></button>
+                    <button class="popup__input-save" type="submit">Создать</button>
+                    <button class="popup__close" type="button"></button>
                 </form>
             </div>
         </div>
@@ -64,7 +64,7 @@
                 <p class="window__text"></p>
                 <button class="window__close" type="button"></button>
             </div>
-        </div>
+        </div> -->
     </div>
     <template id="element-template">
         <div class="element">
