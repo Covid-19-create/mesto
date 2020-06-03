@@ -5,6 +5,10 @@
 @import url(./__input-container/popup__input-container.css);
 @import url(./__input-save/popup__input-save.css);
 @import url(./_opened/popup_opened.css);
+@import url(./__window-image/popup__window-image.css);
+@import url(./__text/popup__text.css);
+@import url(./__box/popup__box.css);
+@import url(./_window/popup_window.css);
 
 .popup {
     display: flex;

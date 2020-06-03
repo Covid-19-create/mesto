@@ -27,25 +27,24 @@ const initialPlaces = [
 
 const body = document.querySelector('.root')
 const editButton = body.querySelector('.profile__edit-Button')
-const popupClose = body.querySelector('.popup__close')
+const popupClose = body.querySelectorAll('.popup__close')
 const popupName = body.querySelector('.popup__field_name')
 const popupJob = body.querySelector('.popup__field_job')
 const fullName = body.querySelector('.profile__full-name')
 const jobs = body.querySelector('.profile__jobs')
-const popupProfile = body.querySelector('.popup_profile')
+const popupProfile = body.querySelector('.popup_profile')//popup профиля
+const popupPlace = body.querySelector('.popup_place')// popup места
 const formSubmit = body.querySelector('.popup__form')
 const addButton = body.querySelector('.profile__add-Button')
-const popupPlace = body.querySelector('.popup-place')
-const placeClose = body.querySelector('.popup__close-place')
 const places = body.querySelector('.elements') // общая карточка для мини карточек
 const elementTemplate = body.querySelector('#element-template').content //шаблон карты
-const inputNamePic = body.querySelector('.popup__name-picture') // поле ввода имя фотографии
-const inputUrl = body.querySelector('.popup__url')// поле ввода Url адреса
-const createNewCard = body.querySelector('.popup__form-place')
-const windowImage = body.querySelector('.window__image') // окно фотографии
-const windowText = body.querySelector('.window__text')  //окно текста
-const windowPopup = body.querySelector('.window') //popup окно
-const closeWindowPopup = body.querySelector('.window__close') //закрытие окна
+const inputNamePic = body.querySelector('.popup__field_picture') // поле ввода имя фотографии
+const inputUrl = body.querySelector('.popup__field_url')// поле ввода Url адреса
+const createNewCard = body.querySelector('.popup__form_place')
+const windowImage = body.querySelector('.popup__window-image') // окно фотографии
+const windowText = body.querySelector('.popup__text')  //окно текста
+const windowPopup = body.querySelector('.popup_window') //popup окно
+
 
 function openPopup(popup) { //открытие popup
   popup.classList.add('popup_opened');
@@ -59,7 +58,8 @@ function showPopupProfile() {
 }
 
 
-function closePopup() { //закрытие popup
+function closePopup(popup) { //закрытие popup
+  if (popup.target) popup = popup.target.closest('.popup_opened')
   popup.classList.remove('popup_opened');
 }
 
@@ -68,26 +68,16 @@ function saveSubmit(evt) { //отправка формы popup
   evt.preventDefault();
   fullName.textContent = popupName.value
   jobs.textContent = popupJob.value
-  closePopup()
+  closePopup(popupProfile)
 }
 
 function openAddPopup() { //открытие popup(места)
-  popupPlace.classList.add('popup-place_opened');
   inputNamePic.value = ''
   inputUrl.value = ''
+  openPopup(popupPlace)
 }
 
-function closeAdd() { //закрытие popup-place
-    popupPlace.classList.remove('popup-place_opened');
-}
 
-function useLike(event) {
-  event.target.classList.toggle('element__heart_like')
-}
-
-function deleteCard(event) {
-  event.target.closest('.element').remove()
-}
 
 
 function newPlaceCard(evt) { // создание карточек
@@ -98,31 +88,11 @@ function newPlaceCard(evt) { // создание карточек
   }
   const PlaceCard = createPlaceCard(place)
   places.prepend(PlaceCard)
-  closeAdd()
+  closePopup(popupPlace)
 }
 
 
-function showWindow() {
-  windowPopup.classList.add('window_opened')
-}
 
-function closeWindow() {
-  windowPopup.classList.remove('window_opened')
-}
-
-
-function openWindow(event) { // открытие фоток попап(окна)
-  const { name, link } = event.target.dataset;
-  windowImage.src = link
-  windowText.textContent = name
-  showWindow()
-}
-
-function callAction(evt) { //действия карточек
-  if (evt.target.classList.contains('element__heart')) useLike(event)
-  if (evt.target.classList.contains('element__image')) openWindow(event)
-  if (evt.target.classList.contains('element__delete')) deleteCard(event)
-}
 
 
 function createPlaceCard({name, link}) { // 6 карточек из коробки
@@ -133,6 +103,19 @@ function createPlaceCard({name, link}) { // 6 карточек из коробк
   placeName.textContent = name
   placeImage.dataset.name = name
   placeImage.dataset.link = link
+  placeCard.querySelector('.element__heart').addEventListener('click', function (evt) {     
+    evt.target.classList.toggle('element__heart_like');
+});
+  
+  placeCard.querySelector('.element__delete').addEventListener('click', function (evt) {    
+    evt.target.closest('.element').remove();
+});
+  
+  placeImage.addEventListener('click', function () {                                           
+    windowImage.src = link;
+    windowText.textContent = name;
+    openPopup(windowPopup);
+});
   return placeCard
 }
   
@@ -152,10 +135,9 @@ function cardOutput() { //Вывод карточек
 cardOutput()
 
 createNewCard.addEventListener('submit', newPlaceCard)
-places.addEventListener('click', callAction)
 formSubmit.addEventListener('submit', saveSubmit);
 editButton.addEventListener('click', showPopupProfile);
-popupClose.addEventListener('click', closePopup);
 addButton.addEventListener('click', openAddPopup);
-placeClose.addEventListener('click', closeAdd);
-closeWindowPopup.addEventListener('click', closeWindow) 
+popupClose.forEach(function (event) { 
+  event.addEventListener('click', closePopup)
+});
