@@ -44,7 +44,10 @@ const createNewCard = body.querySelector('.popup__form_place')
 const windowImage = body.querySelector('.popup__window-image') // окно фотографии
 const windowText = body.querySelector('.popup__text')  //окно текста
 const windowPopup = body.querySelector('.popup_window') //popup окно
-const popup = body.querySelectorAll('.popup')
+const closeProfile = popupProfile.querySelector('.popup__close')
+const closePlace = popupPlace.querySelector('.popup__close')
+const closeWindow = windowPopup.querySelector('.popup__close')
+
 
 function openPopup(popup) { //открытие popup
   popup.classList.add('popup_opened');
@@ -58,11 +61,10 @@ function showPopupProfile() {
 }
 
 
-function closePopup() { //закрытие popup 
-  popup.forEach(function (event) {
-    event.classList.remove('popup_opened');
-  })
+function closePopup(event) { //закрытие popup 
+  event.classList.remove('popup_opened');
 }
+
 
 
 function saveSubmit(evt) { //отправка формы popup
@@ -101,6 +103,7 @@ function createPlaceCard({ name, link }) { // 6 карточек из короб
   const placeName = placeCard.querySelector('.element__place')
   const placeImage = placeCard.querySelector('.element__image')
   placeImage.src = link
+  placeImage.alt = name
   placeName.textContent = name
   placeImage.dataset.name = name
   placeImage.dataset.link = link
@@ -114,7 +117,7 @@ function createPlaceCard({ name, link }) { // 6 карточек из короб
 
   placeImage.addEventListener('click', function () {
     windowImage.src = link;
-    windowText.textContent = name;
+    windowText.textContent = name; 
     openPopup(windowPopup);
   });
   return placeCard
@@ -139,4 +142,7 @@ createNewCard.addEventListener('submit', newPlaceCard)
 formSubmit.addEventListener('submit', saveSubmit);
 editButton.addEventListener('click', showPopupProfile);
 addButton.addEventListener('click', openAddPopup);
-popupClose.forEach(event => event.addEventListener('click', closePopup))
+closeProfile.addEventListener('click', () => closePopup(popupProfile));
+closePlace.addEventListener('click', () => closePopup(popupPlace));
+closeWindow.addEventListener('click', () => closePopup(windowPopup));
+
