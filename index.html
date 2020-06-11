@@ -31,13 +31,15 @@
         </footer>
         <div class="popup popup_profile">
             <div class="popup__container">
-                <form class="popup__form" name="reprofile" method="GET" action="#">
+                <form class="popup__form" name="reprofile" method="GET" action="#" novalidate>
                     <h2 class="popup__heading">Редактировать профиль</h2>
                     <fieldset class="popup__input-container">
                         <input type="text" name="profile" required placeholder="Имя и фамилия"
-                            class="popup__field popup__field_name">
+                            class="popup__field popup__field_name" minlength="2" maxlength="40" id="name-input">
+                        <span class="popup__error-message" id="name-input-error"></span>
                         <input type="text" name="job" required placeholder="Должность"
-                            class="popup__field popup__field_job">
+                            class="popup__field popup__field_job" id="job-input" minlength="2" maxlength="200"><span class="popup__error-message"
+                            id="job-input-error"></span>
                     </fieldset>
                     <button class="popup__input-save" type="submit">Сохранить</button>
                     <button class="popup__close" type="button"></button>
@@ -46,12 +48,15 @@
         </div>
         <div class="popup popup_place">
             <div class="popup__container">
-                <form class="popup__form popup__form_place" name="new-place" method="GET" action="#">
+                <form class="popup__form popup__form_place" name="new-place" method="GET" action="#" novalidate>
                     <h2 class="popup__heading">Новое место</h2>
                     <fieldset class="popup__input-container">
                         <input type="text" name="place" required placeholder="Название места"
-                            class="popup__field popup__field_picture">
-                        <input type="text" name="url" required placeholder="Сайт страницы" class="popup__field popup__field_url">
+                            class="popup__field popup__field_picture" minlength="1" maxlength="30"
+                            id="place-input"><span class="popup__error-message" id="place-input-error"></span>
+                        <input type="url" name="url" required placeholder="Сайт страницы"
+                            class="popup__field popup__field_url" id="url-input"><span class="popup__error-message"
+                            id="url-input-error"></span>
                     </fieldset>
                     <button class="popup__input-save" type="submit">Создать</button>
                     <button class="popup__close" type="button"></button>
@@ -76,6 +81,7 @@
             </div>
         </div>
     </template>
+    <script src="./js/validation.js"></script>
     <script src="./js/script.js"></script>
 </body>
 

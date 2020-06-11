@@ -1,0 +1,14 @@
+@import url(./_active/popup__error-message_active.css);
+
+.popup__error-message {
+    max-width: 358px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: red;
+    margin: 5px 0 0;
+    visibility: hidden;
+    opacity: 0;
+    -moz-transition: all;
+    transition: 0.9s;
+}

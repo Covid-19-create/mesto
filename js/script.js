@@ -51,6 +51,8 @@ const closeWindow = windowPopup.querySelector('.popup__close')
 
 function openPopup(popup) { //открытие popup
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', mouseclick);
+  document.addEventListener('keydown', keyclose)
 }
 
 
@@ -137,6 +139,19 @@ function cardOutput() { //Вывод карточек
 }
 
 cardOutput()
+
+
+function keyclose(evt) { //закрытие попапа esc
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function mouseclick(evt) { // закрытие через клик                
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+}
 
 createNewCard.addEventListener('submit', newPlaceCard)
 formSubmit.addEventListener('submit', saveSubmit);

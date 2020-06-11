@@ -1,3 +1,5 @@
+@import url(./_disabled/popup__input-save_disabled.css);
+
 .popup__input-save {
     border: 0;
     padding: 0;
@@ -6,6 +8,7 @@
     background: black;
     height: 50px;
     color: white;
+    margin-top: 31px;
 }
 
 .popup__input-save:hover {
