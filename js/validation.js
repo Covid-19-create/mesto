@@ -1,4 +1,4 @@
-const objError = {
+const objValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__input-save',
@@ -33,8 +33,10 @@ const checkInputValidity = (formElement, inputElement) => {
 function toggleButtonState(inputList, buttonElement) {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add('popup__input-save_disabled');
+        buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove('popup__input-save_disabled');
+        buttonElement.disabled = false;
     }
 }
 
@@ -50,8 +52,8 @@ const setEventListener = (formElement) => {
     });
 }
 
-const enableValidation = (objError) => {
-    const formList = Array.from(document.querySelectorAll(objError.formSelector));
+const enableValidation = (objValidation) => {
+    const formList = Array.from(document.querySelectorAll(objValidation.formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', function (evt) {
             evt.preventDefault();
@@ -67,4 +69,4 @@ function hasInvalidInput(inputList) {
     })
 }
 
-enableValidation(objError);
+enableValidation(objValidation);
