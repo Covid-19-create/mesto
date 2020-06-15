@@ -52,7 +52,6 @@ function openPopup(popup) { //открытие popup
   popup.classList.add('popup_opened');
   popup.addEventListener('click', mouseClick);
   document.addEventListener('keydown', keyClose);
-  enableValidation(objValidation)
 }
 
 function showPopupProfile() {
@@ -77,6 +76,7 @@ function saveSubmit(evt) { //отправка формы popup
 function openAddPopup() { //открытие popup(места)
   inputNamePic.value = ''
   inputUrl.value = ''
+  setEventListener(popupPlace)
   openPopup(popupPlace)
 }
 
@@ -129,6 +129,8 @@ function cardOutput() { //Вывод карточек
 }
 
 cardOutput()
+
+
 
 function keyClose(evt) { //закрытие попапа esc
   if (evt.key === 'Escape') {
