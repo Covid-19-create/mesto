@@ -46,6 +46,8 @@ const windowPopup = body.querySelector('.popup_window') //popup окно
 const profileClose = popupProfile.querySelector('.popup__close')
 const placeClose = popupPlace.querySelector('.popup__close')
 const windowClose = windowPopup.querySelector('.popup__close')
+const popupSubmit = popupPlace.querySelector('.popup__input-save_disabled')
+const inputList = Array.from(popupPlace.querySelectorAll('.popup__field'));
 
 
 function openPopup(popup) { //открытие popup
@@ -57,7 +59,7 @@ function openPopup(popup) { //открытие popup
 function showPopupProfile() {
   popupName.value = fullName.textContent
   popupJob.value = jobs.textContent
-  openPopup(popupProfile); 
+  openPopup(popupProfile);
 }
 
 function closePopup(event) { //закрытие popup 
@@ -76,8 +78,8 @@ function saveSubmit(evt) { //отправка формы popup
 function openAddPopup() { //открытие popup(места)
   inputNamePic.value = ''
   inputUrl.value = ''
-  setEventListener(popupPlace)
   openPopup(popupPlace)
+  toggleButtonState(inputList, popupSubmit)
 }
 
 function newPlaceCard(evt) { // создание карточек
@@ -111,7 +113,7 @@ function createPlaceCard({ name, link }) { // 6 карточек из короб
   placeImage.addEventListener('click', function () {
     windowImage.src = link;
     windowImage.alt = name;
-    windowText.textContent = name; 
+    windowText.textContent = name;
     openPopup(windowPopup);
   });
   return placeCard
