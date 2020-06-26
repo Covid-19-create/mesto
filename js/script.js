@@ -1,3 +1,6 @@
+import {Card} from './Card.js';
+import { formValidator } from './validation.js';
+
 const initialPlaces = [
   {
     name: 'Архыз',
@@ -36,21 +39,24 @@ const popupPlace = body.querySelector('.popup_place')// popup места
 const formSubmit = body.querySelector('.popup__form')
 const addButton = body.querySelector('.profile__add-Button')
 const places = body.querySelector('.elements') // общая карточка для мини карточек
-const elementTemplate = body.querySelector('#element-template').content //шаблон карты
+export const elementTemplate = body.querySelector('#element-template').content //шаблон карты
 const inputNamePic = popupPlace.querySelector('.popup__field_picture') // поле ввода имя фотографии
 const inputUrl = popupPlace.querySelector('.popup__field_url')// поле ввода Url адреса
 const createNewCard = body.querySelector('.popup__form_place')
-const windowImage = body.querySelector('.popup__window-image') // окно фотографии
-const windowText = body.querySelector('.popup__text')  //окно текста
-const windowPopup = body.querySelector('.popup_window') //popup окно
+export const windowImage = body.querySelector('.popup__window-image') // окно фотографии
+export const windowText = body.querySelector('.popup__text')  //окно текста
+export const windowPopup = body.querySelector('.popup_window') //popup окно
 const profileClose = popupProfile.querySelector('.popup__close')
 const placeClose = popupPlace.querySelector('.popup__close')
 const windowClose = windowPopup.querySelector('.popup__close')
-const popupSubmit = popupPlace.querySelector('.popup__input-save_disabled')
+const popupSubmit = popupPlace.querySelector('.popup__input-save')
 const inputList = Array.from(popupPlace.querySelectorAll('.popup__field'));
+const formPlace = document.querySelector('.popup__form_place')
 
 
-function openPopup(popup) { //открытие popup
+
+
+export function openPopup(popup) { //открытие popup
   popup.classList.add('popup_opened');
   popup.addEventListener('click', mouseClick);
   document.addEventListener('keydown', keyClose);
@@ -79,60 +85,35 @@ function openAddPopup() { //открытие popup(места)
   inputNamePic.value = ''
   inputUrl.value = ''
   openPopup(popupPlace)
-  toggleButtonState(inputList, popupSubmit)
+  formNewPlace.toggleButtonState(inputList, popupSubmit)
 }
 
-function newPlaceCard(evt) { // создание карточек
-  evt.preventDefault()
-  const place = {
-    name: inputNamePic.value,
-    link: inputUrl.value
+
+
+function addCardSite(places, card) {
+  places.prepend(card);
+}
+
+const newCard = () => {
+  initialPlaces.forEach((item) => {
+    const card = new Card(item.name, item.link, '#element-template');
+    const element = card.cardAssembly();
+    addCardSite(places, element);
   }
-  const placeCard = createPlaceCard(place)
-  places.prepend(placeCard)
+  )
+}
+
+const createCard = () => {
+  const card = new Card(inputNamePic.value, inputUrl.value, '#element-template');
+  const element = card.cardAssembly();
+  addCardSite(places, element);
+}
+
+function createNewPlace(e) {
+  e.preventDefault();
+  createCard();
   closePopup(popupPlace)
 }
-
-function createPlaceCard({ name, link }) { // 6 карточек из коробки
-  const placeCard = elementTemplate.cloneNode(true)
-  const placeName = placeCard.querySelector('.element__place')
-  const placeImage = placeCard.querySelector('.element__image')
-  placeImage.src = link
-  placeImage.alt = name
-  placeName.textContent = name
-  placeImage.dataset.name = name
-  placeImage.dataset.link = link
-  placeCard.querySelector('.element__heart').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__heart_like');
-  });
-
-  placeCard.querySelector('.element__delete').addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  });
-
-  placeImage.addEventListener('click', function () {
-    windowImage.src = link;
-    windowImage.alt = name;
-    windowText.textContent = name;
-    openPopup(windowPopup);
-  });
-  return placeCard
-}
-
-function addCardPlaces({ name, link }) { //добавление карточки .elements
-  const card = createPlaceCard({ name, link })
-  places.append(card)
-}
-
-function cardOutput() { //Вывод карточек
-  initialPlaces.forEach(function (event) {
-    addCardPlaces(event)
-  })
-}
-
-cardOutput()
-
-
 
 function keyClose(evt) { //закрытие попапа esc
   if (evt.key === 'Escape') {
@@ -146,7 +127,22 @@ function mouseClick(evt) { // закрытие через клик
   }
 }
 
-createNewCard.addEventListener('submit', newPlaceCard)
+export const objValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__input-save',
+  inactiveButtonClass: 'popup__input-save_disabled',
+  inputErrorClass: 'popup__field_error',
+  errorClass: 'popup__error-message_active',
+};
+
+const formNewProfile = new formValidator(objValidation, formSubmit);
+formNewProfile.enableValidation();
+
+const formNewPlace = new formValidator(objValidation, formPlace);
+formNewPlace.enableValidation();
+
+createNewCard.addEventListener('submit', createNewPlace)
 formSubmit.addEventListener('submit', saveSubmit);
 editButton.addEventListener('click', showPopupProfile);
 addButton.addEventListener('click', openAddPopup);
@@ -154,3 +150,4 @@ profileClose.addEventListener('click', () => closePopup(popupProfile));
 placeClose.addEventListener('click', () => closePopup(popupPlace));
 windowClose.addEventListener('click', () => closePopup(windowPopup));
 
+newCard()
