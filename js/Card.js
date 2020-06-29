@@ -1,4 +1,4 @@
-import {windowImage, windowText, openPopup, windowPopup} from './script.js'
+import {windowImage, windowText, openPopup, windowPopup} from './utils.js'
 
 export class Card {
     constructor(name, link, template) {
@@ -23,6 +23,7 @@ export class Card {
 
     _deleteCard() {
         this._cardElement.remove();
+        this._cardElement = null;
     }
 
     _popup() {

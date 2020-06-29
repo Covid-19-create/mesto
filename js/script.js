@@ -1,5 +1,6 @@
 import {Card} from './Card.js';
-import { formValidator } from './validation.js';
+import { FormValidator } from './validation.js';
+import {closePopup, openPopup, windowPopup} from './utils.js'
 
 const initialPlaces = [
   {
@@ -43,9 +44,6 @@ export const elementTemplate = body.querySelector('#element-template').content /
 const inputNamePic = popupPlace.querySelector('.popup__field_picture') // поле ввода имя фотографии
 const inputUrl = popupPlace.querySelector('.popup__field_url')// поле ввода Url адреса
 const createNewCard = body.querySelector('.popup__form_place')
-export const windowImage = body.querySelector('.popup__window-image') // окно фотографии
-export const windowText = body.querySelector('.popup__text')  //окно текста
-export const windowPopup = body.querySelector('.popup_window') //popup окно
 const profileClose = popupProfile.querySelector('.popup__close')
 const placeClose = popupPlace.querySelector('.popup__close')
 const windowClose = windowPopup.querySelector('.popup__close')
@@ -53,25 +51,12 @@ const popupSubmit = popupPlace.querySelector('.popup__input-save')
 const inputList = Array.from(popupPlace.querySelectorAll('.popup__field'));
 const formPlace = document.querySelector('.popup__form_place')
 
-
-
-
-export function openPopup(popup) { //открытие popup
-  popup.classList.add('popup_opened');
-  popup.addEventListener('click', mouseClick);
-  document.addEventListener('keydown', keyClose);
-}
-
 function showPopupProfile() {
   popupName.value = fullName.textContent
   popupJob.value = jobs.textContent
   openPopup(popupProfile);
-}
-
-function closePopup(event) { //закрытие popup 
-  event.classList.remove('popup_opened');
-  event.removeEventListener('click', mouseClick);
-  document.removeEventListener('keydown', keyClose)
+  formNewProfile.hideInputError(popupProfile, popupName)
+  formNewProfile.hideInputError(popupProfile, popupJob)
 }
 
 function saveSubmit(evt) { //отправка формы popup
@@ -86,9 +71,9 @@ function openAddPopup() { //открытие popup(места)
   inputUrl.value = ''
   openPopup(popupPlace)
   formNewPlace.toggleButtonState(inputList, popupSubmit)
+  formNewPlace.hideInputError(popupPlace, inputNamePic)
+  formNewPlace.hideInputError(popupPlace, inputUrl)
 }
-
-
 
 function addCardSite(places, card) {
   places.prepend(card);
@@ -115,18 +100,6 @@ function createNewPlace(e) {
   closePopup(popupPlace)
 }
 
-function keyClose(evt) { //закрытие попапа esc
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
-
-function mouseClick(evt) { // закрытие через клик                
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target);
-  }
-}
-
 export const objValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__field',
@@ -136,10 +109,10 @@ export const objValidation = {
   errorClass: 'popup__error-message_active',
 };
 
-const formNewProfile = new formValidator(objValidation, formSubmit);
+const formNewProfile = new FormValidator(objValidation, formSubmit);
 formNewProfile.enableValidation();
 
-const formNewPlace = new formValidator(objValidation, formPlace);
+const formNewPlace = new FormValidator(objValidation, formPlace);
 formNewPlace.enableValidation();
 
 createNewCard.addEventListener('submit', createNewPlace)

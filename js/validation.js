@@ -1,4 +1,4 @@
-export class formValidator {
+export class FormValidator {
     constructor(objValidation, form) {
         this._form = form;
         this._inputSelector = objValidation.inputSelector;
@@ -15,7 +15,7 @@ export class formValidator {
         errorElement.classList.add(this._errorClass);
     }
 
-    _hideInputError(form, inputElement) {
+    hideInputError(form, inputElement) {
         const errorElement = form.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(this._errorClass);
@@ -26,7 +26,7 @@ export class formValidator {
         if (!inputElement.validity.valid) {
             this._showInputError(form, inputElement, inputElement.validationMessage);
         } else {
-            this._hideInputError(form, inputElement);
+            this.hideInputError(form, inputElement);
         }
     };
 
