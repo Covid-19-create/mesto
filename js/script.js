@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import { FormValidator } from './validation.js';
+import { FormValidator } from './FormValidator.js';
 import {closePopup, openPopup, windowPopup} from './utils.js'
 
 const initialPlaces = [
@@ -79,7 +79,7 @@ function addCardSite(places, card) {
   places.prepend(card);
 }
 
-const newCard = () => {
+const addInitialCards = () => {
   initialPlaces.forEach((item) => {
     const card = new Card(item.name, item.link, '#element-template');
     const element = card.cardAssembly();
@@ -123,4 +123,4 @@ profileClose.addEventListener('click', () => closePopup(popupProfile));
 placeClose.addEventListener('click', () => closePopup(popupPlace));
 windowClose.addEventListener('click', () => closePopup(windowPopup));
 
-newCard()
+addInitialCards()
