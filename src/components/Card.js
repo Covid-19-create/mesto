@@ -1,15 +1,14 @@
-import {windowImage, windowText, openPopup, windowPopup} from './utils.js'
-
 export class Card {
-    constructor(name, link, template) {
-        this._name = name;
-        this._link = link;
-        this._template = template
+    constructor(cardSelector, { initialPlaces, handleCardClick }) {
+        this._name = initialPlaces.name;
+        this._link = initialPlaces.link;
+        this._handleCardClick = handleCardClick;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {
         const cardElement = document
-            .querySelector(this._template)
+            .querySelector(this._cardSelector)
             .content
             .querySelector('.element')
             .cloneNode(true);
@@ -26,13 +25,6 @@ export class Card {
         this._cardElement = null;
     }
 
-    _popup() {
-        windowImage.src = this._link;
-        windowText.textContent = this._name;
-        openPopup(windowPopup);
-    }
-
-
     _allEventListener() {
 
         this._cardElement.querySelector('.element__heart').addEventListener('click', () => {
@@ -44,10 +36,9 @@ export class Card {
         });
 
         this._cardElement.querySelector('.element__image').addEventListener('click', () => {
-            this._popup();
+            this._handleCardClick();
         });
     }
-
 
     cardAssembly() {
         this._cardElement = this._getTemplate();
