@@ -14,7 +14,6 @@ const popupJob = document.querySelector('.popup__field_job')
 const fullName = document.querySelector('.profile__full-name')
 const jobs = document.querySelector('.profile__jobs')
 const formSubmit = document.querySelector('.popup__form')
-export const elementTemplate = document.querySelector('#element-template').content //шаблон карты
 const inputNamePic = popupPlace.querySelector('.popup__field_picture') // поле ввода имя фотографии
 const inputUrl = popupPlace.querySelector('.popup__field_url')// поле ввода Url адреса
 
@@ -45,40 +44,45 @@ function openProfileForm() {//открытие профиля
 
 profileForm.setEventListeners();
 
-
 const popupPhotoCard = new PopupWithImage(windowPopup, windowImage, windowText);
+
+function addCards(item) {
+  const card = new Card('#element-template', {
+    initialPlaces: item, handleCardClick: () => {
+      popupPhotoCard.open(item);
+    }
+  });
+  const cardElement = card.cardAssembly();
+  cardSheet.addItem(cardElement);
+}
 
 const cardSheet = new Section({
   items: initialPlaces, renderer: (item) => {
-    const card = new Card('#element-template', {
-      initialPlaces: item, handleCardClick: () => {
-        popupPhotoCard.open(item);
-      }
-    });
-    const cardElement = card.cardAssembly();
-    cardSheet.addItem(cardElement);
+    addCards(item);
   }
 }, places);
 
 cardSheet.renderItems(initialPlaces);
 
+function placeCards(item) {
+  const card = new Card('#element-template', {
+    initialPlaces: item, handleCardClick: () => {
+      popupPhotoCard.open(item);
+    }
+  });
+  const cardElement = card.cardAssembly();
+  cardSheet.addItem(cardElement);
+  cardForm.close();
+}
+
 const cardForm = new PopupWithForm(popupPlace, {
   submitForm: (item) => {
-    const card = new Card('#element-template', {
-      initialPlaces: item, handleCardClick: () => {
-        popupPhotoCard.open(item);
-      }
-    });
-    //console.log(card)
-    const cardElement = card.cardAssembly();
-    //console.log(cardElement)
-    cardSheet.addItem(cardElement);
-    cardForm.close();
+    placeCards(item)
   }
-});
+})
 
 // слушатели на window
-popupPhotoCard.setEventListeners();
+popupPhotoCard.setEventListeners()
 
 const openCardForm = () => {//открытие попап place
   cardForm.open();
@@ -100,4 +104,4 @@ formNewPlace.enableValidation();
 
 
 editButton.addEventListener('click', openProfileForm);
-addButton.addEventListener('click', openCardForm);
+addButton.addEventListener('click', openCardForm)

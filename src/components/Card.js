@@ -1,5 +1,6 @@
 export class Card {
-    constructor(cardSelector, { initialPlaces, handleCardClick }) {
+
+constructor(cardSelector, { initialPlaces, handleCardClick }) {
         this._name = initialPlaces.name;
         this._link = initialPlaces.link;
         this._handleCardClick = handleCardClick;
@@ -12,7 +13,7 @@ export class Card {
             .content
             .querySelector('.element')
             .cloneNode(true);
-        return cardElement
+        return cardElement;
     }
 
     _likeCard() {
@@ -41,11 +42,12 @@ export class Card {
     }
 
     cardAssembly() {
-        this._cardElement = this._getTemplate();
-        this._allEventListener();
-        this._cardElement.querySelector('.element__image').src = this._link;
-        this._cardElement.querySelector('.element__image').alt = this._name;
-        this._cardElement.querySelector('.element__place').textContent = this._name;
-        return this._cardElement;
+        this._cardElement = this._getTemplate(); 
+        this._allEventListener(); 
+        this._elementImage = this._cardElement.querySelector('.element__image');
+        this._elementImage.src = this._link; 
+        this._elementImage.alt = this._name; 
+        this._cardElement.querySelector('.element__place').textContent = this._name; 
+        return this._cardElement; 
     }
-}
+} 

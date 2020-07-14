@@ -45,3 +45,4 @@ export const initialPlaces = [
   export const windowImage = document.querySelector('.popup__window-image') // окно фотографии 
   export const windowText = document.querySelector('.popup__text')  //окно текста 
   export const popupSubmit = popupPlace.querySelector('.popup__input-save')
+  export const elementImage = document.querySelector('.element__image')
