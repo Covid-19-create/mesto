@@ -64,20 +64,11 @@ const cardSheet = new Section({
 
 cardSheet.renderItems(initialPlaces);
 
-function placeCards(item) {
-  const card = new Card('#element-template', {
-    initialPlaces: item, handleCardClick: () => {
-      popupPhotoCard.open(item);
-    }
-  });
-  const cardElement = card.cardAssembly();
-  cardSheet.addItem(cardElement);
-  cardForm.close();
-}
 
 const cardForm = new PopupWithForm(popupPlace, {
   submitForm: (item) => {
-    placeCards(item)
+    addCards(item)
+    cardForm.close()
   }
 })
 
