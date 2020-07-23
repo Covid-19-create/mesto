@@ -1,0 +1,18 @@
+.profile__button {
+    background-image: url(../../../sprint-4-image/ava-karandash.svg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    border: 0;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+}
+
+.profile__button:hover {
+    opacity: 1;
+    background-color: rgb(0, 0, 0, 0.8);
+}

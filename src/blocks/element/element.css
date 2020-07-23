@@ -3,6 +3,8 @@
 @import url(./__image/element__image.css);
 @import url(./__place/element__place.css);
 @import url(./__delete/element__delete.css);
+@import url(./__functionality/element__functionality.css);
+@import url(./__heart-score/element__heart-score.css);
 
 .element {
     width: 282px;

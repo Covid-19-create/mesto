@@ -10,6 +10,9 @@
 @import url(./__box/popup__box.css);
 @import url(./_window/popup_window.css);
 @import url(./__error-message/popup__error-message.css);
+@import url(./__container/_delete/popup__container_delete.css);
+@import url(./__container/_avatar/popup__container_avatar.css);
+@import url(./__input-save/_avatar/popup__input-save_avatar.css);
 
 
 .popup {

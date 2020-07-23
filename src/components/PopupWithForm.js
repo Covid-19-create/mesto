@@ -4,9 +4,11 @@ export class PopupWithForm extends Popup {
     constructor(popup, { submitForm }) {
         super(popup);
         this._submitForm = submitForm;
+        this._submitButton = this._popup.querySelector('.popup__input-save');
+        this._buttonText = this._submitButton.textContent;
     }
     
-    _getInputValues() { //поля формы
+    getInputValues() { //поля формы
         this._inputList = this._popup.querySelectorAll('.popup__field');
         this._formValue = {};
         this._inputList.forEach(item => {
@@ -15,9 +17,18 @@ export class PopupWithForm extends Popup {
         return this._formValue;
     }
 
-    close() {// закрытие формы
-        super.close();
+    sendLoading(isLoading) {
+        if (isLoading) {
+           this._submitButton.classList.add('popup__button_loading');
+           this._submitButton.textContent = 'Сохранение...'
+        }
+        else if (!isLoading) {
+          this._submitButton.classList.remove('popup__button_loading');
+          this._submitButton.textContent = this._buttonText;
+
+        }
     }
+
 
     setEventListeners() { //накидываем слушатели
         this._submit = this._sendForm.bind(this);
@@ -27,6 +38,6 @@ export class PopupWithForm extends Popup {
 
     _sendForm(evt) {// отправка формы
         evt.preventDefault();
-        this._submitForm(this._getInputValues());
+        this._submitForm(this.getInputValues());
     }
 }

@@ -3,12 +3,14 @@ export class Popup {
         this._popup = popupSelector;
         this._keyClose = this._keyClose.bind(this);
         this._mouseClick = this._mouseClick.bind(this);
+        this._deletePopup = document.querySelector('.popup__input-save_delete');
     }
 
     open() { //открытие popup
         this._popup.classList.add('popup_opened');
         this._popup.addEventListener('click', this._mouseClick);
         document.addEventListener('keydown', this._keyClose);
+        this._deletePopup.focus();
     }
     
     _keyClose(evt) { //закрытие попапа esc

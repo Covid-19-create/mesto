@@ -1,0 +1,5 @@
+.element__functionality {
+    display: flex;
+    flex-direction: column;
+    margin: 21px 21px 0 0;
+}
