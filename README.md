@@ -1,6 +1,6 @@
 # Проект 6: Место
 
-https://covid-19-create.github.io/mesto/
+https://covid-19-create.github.io/mesto/index.html
 
 Для страницы был использован java-script:
 
